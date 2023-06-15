@@ -22,6 +22,10 @@ Take care of including holding costs increasing with the quality of the products
 
 - [ ] Find solution properties about the problem with and without dispose
 
+
+# Notes
+
+All the Python scripts (my_program.py) have user guide running <code>my_program.py -h</code> or <code>my_program.py --help</code>.
 # Notations
 
 ## Parameters
