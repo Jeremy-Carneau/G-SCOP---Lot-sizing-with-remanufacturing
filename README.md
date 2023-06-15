@@ -16,7 +16,7 @@ Take care of including holding costs increasing with the quality of the products
 
 ## Test section
 
-- [ ] Generate different tests (variation of costs, ...) with at least 30 periods
+- [x] Generate different tests (variation of costs, ...) with at least 30 periods
 
 ## Mathematical section
 
