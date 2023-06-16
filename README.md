@@ -12,7 +12,7 @@ Take care of including holding costs increasing with the quality of the products
 
 ## Programming section
 
-- [ ] Automate generation of flow graphs from linear program (LP) resolution (see if it is possible with Python or something, otherwise use LateX with tikz)
+- [x] Automate generation of flow graphs from linear program (LP) resolution (see if it is possible with Python or something, otherwise use LateX with tikz)
 
 ## Test section
 

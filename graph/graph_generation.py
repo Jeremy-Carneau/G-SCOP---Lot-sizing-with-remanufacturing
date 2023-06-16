@@ -16,24 +16,127 @@ E = 0.001 # Under this value, the flow is considered equals to 0
 
 ##### Code
 
-# Création du graphe
+## Collect date from OPL results
+
+def read_line(line):
+    res = []
+    res.append(float(line[2][1:]))
+    for x in line[3:-1]:
+        res.append(float(x))
+    res.append(float(line[-1][:-1]))
+    return res
+
 
 def collect_data(filename):
     """ Read the result from an OPL script and put the results
     in global variables """
     global T, xn, xs, xr, R, sn, ss, sr
 
-    T = 6
-    xn = [20, 12, 16, 30, 0, 19]
-    xs = [9, 9, 14, 0, 12, 13]
-    xr = [4, 11, 1, 17, 0, 0]
+    T = None
+    xr = []
+    sr = []
+    R = []
+    
+    # T = 6
+    # xn = [20, 12, 16, 30, 0, 19]
+    # xs = [9, 9, 14, 0, 12, 13]
+    # xr = [4, 11, 1, 17, 0, 0]
 
-    R = [13, 20, 15, 19, 10, 16]
+    # R = [13, 20, 15, 19, 10, 16]
 
-    sn = [0, 0, 0, 0, 11, 0, 0]
-    ss = [0, 0, 0, 6, 0, 0, 0]
-    sr = [0, 0, 0, 0, 2, 0, 3]
+    # sn = [0, 0, 0, 0, 11, 0, 0]
+    # ss = [0, 0, 0, 6, 0, 0, 0]
+    # sr = [0, 0, 0, 0, 2, 0, 3]
 
+
+    file = open(filename, 'r')
+
+    for lines in file:
+        current = lines.split()
+        if len(current) == 0:
+            continue
+        # Only read data
+        if current[0] not in {"T", "xn", "xs", "xr", "sn", "ss", "sr", "R"}:
+            continue
+
+        if current[0] == "T":
+            line = current
+        else:
+            line = ""
+            temp_line = lines
+            if len(temp_line) != 0:
+                # We test if the list is writen on several lines
+                test = temp_line.split()[-1][-1]
+                while test != "]":
+                    line += temp_line
+                    temp_line = file.readline()
+                    if len(temp_line) == 0:
+                        break
+                    test = temp_line.split()[-1][-1]
+                line += temp_line
+            
+            line = line.split()
+
+            
+        match line[0]:
+            case "T":
+                T = int(line[2])
+            case "xn":
+                xn = read_line(line)
+            case "xs":
+                xs = read_line(line)
+            case "xr":
+                xr = read_line(line)
+            case "sn":
+                sn = read_line(line)
+            case "ss":
+                ss = read_line(line)
+            case "sr":
+                sr = read_line(line)
+            case "R":
+                R = read_line(line)
+            case other:
+                continue
+
+    file.close()
+
+    # print(f"T = {T}")
+    # print(f"xn = {xn}")
+    # print(f"xs = {xs}")
+    # print(f"xr = {xr}")
+    # print(f"sn = {sn}")
+    # print(f"ss = {ss}")
+    # print(f"sr = {sr}")
+    # print(f"R = {R}")
+
+    # Data verifications
+    if T is None:
+        print("The problem has no solution")
+        exit(1)
+    
+    assert(len(xn) == T)
+    assert(len(xs) == T)
+    assert(len(sn) == T + 1)
+    assert(len(ss) == T + 1)
+
+
+    if len(xr) > 0:
+        assert(len(xr) == T) 
+    else:
+        xr = [0] * T
+    
+    if len(sr) > 0:
+        assert(len(sr) == T + 1)
+    else:
+        sr = [0] * (T + 1)
+    
+    if len(R) > 0:
+        assert(len(R) == T)
+    else:
+        R = [0] * T
+
+
+## Graph creation
 
 def generate_graph():
     """ Plot the flow graph related to global variables generated 
@@ -107,11 +210,11 @@ def generate_graph():
             G.add_edge(f"xn[{i}]", f"N[{i}]", color='red', weight=xn[i])
 
         # Demand
-        if E < xn[i] - sn[i + 1]:
-            G.add_edge(f"N[{i}]", f"Dn[{i}]", color='black', weight=xn[i] - sn[i + 1])
+        if E < xn[i] - sn[i + 1] + sn[i]:
+            G.add_edge(f"N[{i}]", f"Dn[{i}]", color='black', weight=xn[i] - sn[i + 1] + sn[i])
 
-        if E < xs[i] - ss[i + 1]:
-            G.add_edge(f"S[{i}]", f"Ds[{i}]", color='black', weight=xs[i] - ss[i + 1])
+        if E < xs[i] - ss[i + 1] + ss[i]:
+            G.add_edge(f"S[{i}]", f"Ds[{i}]", color='black', weight=xs[i] - ss[i + 1] + ss[i])
 
         # Dispose
         if E < xr[i]:
@@ -122,9 +225,8 @@ def generate_graph():
             G.add_edge(f"RR[{i}]", f"R[{i}]", color='blue', weight=R[i])
 
         # Remanufactured production
-        p = xs[i] - ss[i]
-        if E < p:
-            G.add_edge(f"R[{i}]", f"S[{i}]", color='blue', weight=p)
+        if E < xs[i]:
+            G.add_edge(f"R[{i}]", f"S[{i}]", color='blue', weight=xs[i])
 
 
     edge_colors = [G.edges[edge]['color'] for edge in G.edges]

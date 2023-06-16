@@ -23,8 +23,8 @@ Dn_range = 7 # Range of the manufactured demand
 R_mean = 13 # Mean of the number of returns
 R_range = 8 # Range of the number of returns
 
-C_mean = 40 # Mean of the capacity values
-C_range = 3 # Range of the capacity values
+C_mean = 50 # Mean of the capacity values
+C_range = 5 # Range of the capacity values
 
 f_mean = 15 # Mean of setup cost
 f_range = 8 # Range of setup cost

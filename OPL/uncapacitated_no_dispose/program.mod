@@ -17,7 +17,6 @@ float f[periods] = ... ; // Fixed joint setup cost
 
 float pn[periods] = ... ; // Variable manufacturing cost
 float ps[periods] = ... ; // Variable remanufacturing cost
-float pr[periods] = ... ; // Variable cost to dispose returns
 
 float hn[periods] = ... ; // Holding cost of manufactured products
 float hs[periods] = ... ; // Holding cost of remanufactured products
@@ -32,7 +31,6 @@ float M = sum (t in periods) (Dn[t] + Ds[t]); // Max of production
 
 dvar float+ xn[periods]; // Number of manufactured products
 dvar float+ xs[periods]; // Number of remanufactured products
-dvar float+ xr[periods]; // Number of disposed return products
 
 dvar float+ sn[0..T]; // Inventory of manufactured products
 dvar float+ ss[0..T]; // Inventory of remanufactured products
@@ -46,8 +44,7 @@ dvar boolean y[periods]; // y[t] = 1 if production is launched at period t, else
 
 minimize sum (t in periods) ((pn[t] * xn[t] + ps[t] * xs[t]) // Variable costs
                             + (hn[t] * sn[t] + hs[t] * ss[t] +  hr[t] * sr[t]) // Holding costs
-                            + f[t] * y[t] // Setup cost
-                            + pr[t] * xr[t]); // Dispose cost
+                            + f[t] * y[t]); // Setup cost
 
 /*
     Constraints
@@ -65,7 +62,7 @@ subject to {
     forall (t in periods) xs[t] + ss[t - 1] == ss[t] + Ds[t];
 
     // Returns management
-    forall (t in periods) R[t] + sr[t - 1] == xr[t] + sr[t] + xs[t];
+    forall (t in periods) R[t] + sr[t - 1] == sr[t] + xs[t];
 
     // In order to include production cost
     forall (t in periods) xn[t] + xs[t] <= M * y[t];
@@ -84,7 +81,6 @@ execute {
 
     writeln("xn = ", xn);
     writeln("xs = ", xs);
-    writeln("xr = ", xr);
 
     writeln("sn = ", sn);
     writeln("ss = ", ss);

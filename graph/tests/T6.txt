@@ -1,0 +1,79 @@
+IBM ILOG CPLEX Optimization Studio Community Edition.  The CPLEX Optimizers will solve problems up to 1000 variables and 1000 constraints.
+Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.co/2s0wqSa
+
+
+<<< setup
+
+
+<<< generate
+
+Version identifier: 22.1.1.0 | 2022-11-26 | 9160aff4d
+Tried aggregator 2 times.
+MIP Presolve eliminated 3 rows and 6 columns.
+Aggregator did 3 substitutions.
+Reduced MIP has 21 rows, 36 columns, and 67 nonzeros.
+Reduced MIP has 4 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0,00 sec. (0,07 ticks)
+Found incumbent of value 1381,000000 after 0,00 sec. (0,15 ticks)
+Probing time = 0,00 sec. (0,01 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 21 rows, 36 columns, and 67 nonzeros.
+Reduced MIP has 4 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0,00 sec. (0,04 ticks)
+Probing time = 0,00 sec. (0,01 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0,00 sec. (0,04 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         1381,0000      167,0000            87,91%
+      0     0      614,0390     4     1381,0000      614,0390       24   55,54%
+*     0+    0                          653,0000      614,0390             5,97%
+      0     0        cutoff            653,0000                     26    0,00%
+Elapsed time = 0,02 sec. (0,41 ticks, tree = 0,01 MB, solutions = 2)
+
+Flow cuts applied:  1
+Mixed integer rounding cuts applied:  2
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0,02 sec. (0,42 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0,00 sec. (0,00 ticks)
+  Sync time (average)   =    0,00 sec.
+  Wait time (average)   =    0,00 sec.
+                          ------------
+Total (root+branch&cut) =    0,02 sec. (0,42 ticks)
+
+<<< solve
+
+
+OBJECTIVE: 653
+Post-traitement: 
+La valeur de l'objectif est de 653
+
+Données: 
+T = 6
+R =  [13 20 15 19 10 16]
+
+Valeurs de production: 
+xn =  [20 12 16 30 0 19]
+xs =  [9 9 14 0 12 13]
+xr =  [4 11 1 17 0 0]
+
+Valeurs de stockage: 
+sn =  [0 0 0 0 11 0 0]
+ss =  [0 0 0 6 0 0 0]
+sr =  [0 0 0 0 2 0 3]
+
+<<< post process
+
+
+<<< done
+

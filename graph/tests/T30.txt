@@ -1,0 +1,83 @@
+IBM ILOG CPLEX Optimization Studio Community Edition.  The CPLEX Optimizers will solve problems up to 1000 variables and 1000 constraints.
+Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.co/2s0wqSa
+
+
+<<< setup
+
+
+<<< generate
+
+Version identifier: 22.1.1.0 | 2022-11-26 | 9160aff4d
+Tried aggregator 2 times.
+MIP Presolve eliminated 3 rows and 7 columns.
+Aggregator did 4 substitutions.
+Reduced MIP has 116 rows, 202 columns, and 377 nonzeros.
+Reduced MIP has 27 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0,00 sec. (0,40 ticks)
+Found incumbent of value 23545,000000 after 0,00 sec. (0,87 ticks)
+Probing fixed 1 vars, tightened 0 bounds.
+Probing time = 0,00 sec. (0,11 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 0 rows and 1 columns.
+Reduced MIP has 116 rows, 201 columns, and 376 nonzeros.
+Reduced MIP has 26 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0,00 sec. (0,24 ticks)
+Probing time = 0,00 sec. (0,10 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0,00 sec. (0,35 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                        23545,0000      158,0000            99,33%
+      0     0     2534,0737    24    23545,0000     2534,0737      132   89,24%
+*     0+    0                         2900,0000     2534,0737            12,62%
+      0     0        cutoff           2900,0000                    162    0,00%
+Elapsed time = 0,03 sec. (3,33 ticks, tree = 0,01 MB, solutions = 2)
+
+Implied bound cuts applied:  7
+Flow cuts applied:  59
+Mixed integer rounding cuts applied:  30
+Gomory fractional cuts applied:  21
+
+Root node processing (before b&c):
+  Real time             =    0,03 sec. (3,34 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0,00 sec. (0,00 ticks)
+  Sync time (average)   =    0,00 sec.
+  Wait time (average)   =    0,00 sec.
+                          ------------
+Total (root+branch&cut) =    0,03 sec. (3,34 ticks)
+
+<<< solve
+
+
+OBJECTIVE: 2900
+Post-traitement: 
+La valeur de l'objectif est de 2900
+Données :
+Dn =  [8 9 15 15 8 11 18 11 11 15 12 21 9 20 13 18 17 17 16 14 15 14 15 17 15 18
+     19 22 16 15]
+Ds =  [9 13 11 15 12 14 11 8 5 8 13 10 7 7 10 7 5 15 12 7 12 5 10 6 11 5 5 12 11
+     13]
+T = 30
+R =  [15 11 18 16 7 7 13 14 18 6 10 21 12 16 14 19 18 18 16 10 14 9 16 17 8 8 13
+     12 5 14]
+xn =  [17 0 15 15 8 11 18 11 26 0 33 0 9 20 31 0 17 17 16 14 15 14 15 17 15 18 19
+     38 0 15]
+xs =  [15 7 11 15 19 7 11 8 16 0 10 10 7 7 17 0 18 2 12 7 12 9 6 6 11 5 16 1 16 8]
+xr =  [0 3.5527e-15 0 0 0 0 2 6 2 6 0 11 5 6 0 19 0 0 20 0 5 0 0 18 0 0 0 0 0 0]
+sn =  [0 9 0 0 0 0 0 0 0 15 0 21 0 0 0 18 0 0 0 0 0 0 0 0 0 0 0 0 16 0 0]
+ss =  [0 6 0 0 0 7 0 0 0 11 3 0 0 0 0 7 0 13 0 0 0 0 4 0 0 0 0 11 0 5 0]
+sr =  [0 0 4 11 12 0 0 0 0 0 0 0 0 0 3 0 0 0 16 0 3 0 0 10 3 0 3 0 11 0 6]
+
+<<< post process
+
+
+<<< done
+
