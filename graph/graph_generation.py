@@ -169,7 +169,7 @@ def generate_graph():
     node_label = f"S[{T}]"
     G.add_node(node_label, pos=(T, 3), color='red', label_visible = False)
 
-    # Nodes for new product demand
+    # Nodes for remanufactured product demand
     for j in range(T):
         node_label = f"Ds[{j}]"
         G.add_node(node_label, pos=(j, 2.2), color='white', label_visible = False)
