@@ -36,18 +36,6 @@ def collect_data(filename):
     xr = []
     sr = []
     R = []
-    
-    # T = 6
-    # xn = [20, 12, 16, 30, 0, 19]
-    # xs = [9, 9, 14, 0, 12, 13]
-    # xr = [4, 11, 1, 17, 0, 0]
-
-    # R = [13, 20, 15, 19, 10, 16]
-
-    # sn = [0, 0, 0, 0, 11, 0, 0]
-    # ss = [0, 0, 0, 6, 0, 0, 0]
-    # sr = [0, 0, 0, 0, 2, 0, 3]
-
 
     file = open(filename, 'r')
 
@@ -99,15 +87,6 @@ def collect_data(filename):
                 continue
 
     file.close()
-
-    # print(f"T = {T}")
-    # print(f"xn = {xn}")
-    # print(f"xs = {xs}")
-    # print(f"xr = {xr}")
-    # print(f"sn = {sn}")
-    # print(f"ss = {ss}")
-    # print(f"sr = {sr}")
-    # print(f"R = {R}")
 
     # Data verifications
     if T is None:
@@ -172,13 +151,12 @@ def generate_graph():
     # Nodes for remanufactured product demand
     for j in range(T):
         node_label = f"Ds[{j}]"
-        G.add_node(node_label, pos=(j, 2.2), color='white', label_visible = False)
+        G.add_node(node_label, pos=(j + 0.3, 2.2), color='white', label_visible = False)
 
     # Production nodes for new products
     for j in range(T):
         node_label = f"xn[{j}]"
         G.add_node(node_label, pos=(j, 1.8), color='white', label_visible = False)
-
 
     # New products nodes
     for j in range(T):
@@ -190,10 +168,9 @@ def generate_graph():
     # Nodes for new product demand
     for j in range(T):
         node_label = f"Dn[{j}]"
-        G.add_node(node_label, pos=(j, 0), color='white', label_visible = False)
+        G.add_node(node_label, pos=(j + 0.3, 0), color='white', label_visible = False)
 
     ## Edge generation
-
     for i in range(T):
         # Stocks
         if E < sn[i + 1]:

@@ -20,22 +20,22 @@ Ds_range = 5 # Range of the remanufactured demand
 Dn_mean = 15 # Mean of the manufactured demand
 Dn_range = 7 # Range of the manufactured demand
 
-R_mean = 13 # Mean of the number of returns
+R_mean = 20 # Mean of the number of returns
 R_range = 8 # Range of the number of returns
 
 C_mean = 50 # Mean of the capacity values
 C_range = 5 # Range of the capacity values
 
-f_mean = 15 # Mean of setup cost
+f_mean = 50 # Mean of setup cost
 f_range = 8 # Range of setup cost
 
-pn_mean = 4 # Mean of variable manufacturing cost
+pn_mean = 10 # Mean of variable manufacturing cost
 pn_range = 3 # Range of variable manufacturing cost
 
-ps_mean = 3 # Mean of variable remanufacturing cost
+ps_mean = 7 # Mean of variable remanufacturing cost
 ps_range = 2 # Range of variable remanufacturing cost
 
-pr_mean = 2 # Mean of dispose cost
+pr_mean = 4 # Mean of dispose cost
 pr_range = 1 # Range of dispose cost
 
 hn_mean = 4 # Mean of holding cost of manufacturing products
