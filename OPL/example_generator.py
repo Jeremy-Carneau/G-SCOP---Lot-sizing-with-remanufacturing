@@ -38,14 +38,14 @@ ps_range = 2 # Range of variable remanufacturing cost
 pr_mean = 2 # Mean of dispose cost
 pr_range = 1 # Range of dispose cost
 
-hn_mean = 3 # Mean of holding cost of manufacturing products
+hn_mean = 4 # Mean of holding cost of manufacturing products
 hn_range = 1 # Range of holding cost of manufacturing products
 
-hs_mean = 2 # Mean of holding cost of remanufacturing products
-hs_range = 1 # Range of holding cost of remanufacturing products
+hs_mean = 3 # Mean of holding cost of remanufacturing products
+hs_range = 2 # Range of holding cost of remanufacturing products
 
-hr_mean = 1 # Mean of holding cost of returns
-hr_range = 0 # Range of holding cost of returns
+hr_mean = 2 # Mean of holding cost of returns
+hr_range = 1 # Range of holding cost of returns
 
 ##### Code
 
@@ -68,6 +68,27 @@ def create_random_list(m, r):
         res.append(m + rd.randint(-r, r))
     return res
 
+def adjust_returns(R, Ds):
+    """Takes in a list of Returns and a list of demands and adjusts the Returns list so that there exists a solution to the lot sizing problem
+    Returns a boolean indicating whether a change has been made or not"""
+    pref_R = 0
+    pref_Ds = 0
+    modified = False
+    for i in range(len(R)):
+        pref_R += R[i]
+        pref_Ds += Ds[i]
+        if pref_R>=pref_Ds:
+            continue
+        modified = True
+        while pref_R < pref_Ds:
+            delta = R_mean + rd.randint(-R_range, R_range)
+            R[i] += delta
+            pref_R += delta
+
+    return modified
+
+
+
 def generate_example():
     """ Create the .dat file with the constraints set by the problem."""
 
@@ -83,6 +104,9 @@ def generate_example():
 
     if args.returns:
         R = create_random_list(R_mean, R_range)
+        modified = adjust_returns(R, Ds)
+        if modified:
+            print("The list of returns has been adjusted for a solution to exist")
         file.write(f"R = {R};\n")
 
     f = create_random_list(f_mean, f_range)
