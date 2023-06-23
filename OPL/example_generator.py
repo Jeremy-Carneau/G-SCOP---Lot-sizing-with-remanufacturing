@@ -26,7 +26,7 @@ R_range = 5 # Range of the number of returns
 C_mean = 50 # Mean of the capacity values
 C_range = 5 # Range of the capacity values
 
-f_mean = 2000 # Mean of setup cost
+f_mean = 1000 # Mean of setup cost
 f_range = 30 # Range of setup cost
 
 pn_mean = 55 # Mean of variable manufacturing cost
@@ -41,10 +41,10 @@ pr_range = 1 # Range of dispose cost
 hn_mean = 15 # Mean of holding cost of manufacturing products
 hn_range = 2 # Range of holding cost of manufacturing products
 
-hs_mean = 9 # Mean of holding cost of remanufacturing products
+hs_mean = 11 # Mean of holding cost of remanufacturing products
 hs_range = 1 # Range of holding cost of remanufacturing products
 
-hr_mean = 4 # Mean of holding cost of returns
+hr_mean = 3 # Mean of holding cost of returns
 hr_range = 1 # Range of holding cost of returns
 
 ##### Code
