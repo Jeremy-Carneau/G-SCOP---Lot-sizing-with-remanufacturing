@@ -20,9 +20,28 @@ Take care of including holding costs increasing with the quality of the products
 
 ## Mathematical section
 
-- [ ] Find solution properties about the problem with and without dispose
+- [x] Find solution properties about the problem with and without dispose
 
+### Without dispose
 
+- [ ] Prove that it exists an optimal solution that respects Wagner-Within property for new products
+
+- [ ] Prove that it exists an optimal solution that respects Wagner-Within property for remanufacturial products
+
+- [ ] Prove that it exists an optimal solution when new products and remanufacturial products are products at the same periods
+### With dispose
+
+- [ ] Prove that it exists an optimal solution that respects Wagner-Within property for new products
+
+- [ ] Prove that it exists an optimal solution that respects Wagner-Within property for remanufacturial products
+
+- [ ] Prove that it exists an optimal solution when new products and remanufacturial products are products at the same periods
+
+- [ ] Define a subplan structure (4 indexes)
+
+- [ ] Prove that it exists an optimal solution when we dispose at the beginning of each subplan
+
+- [ ] Prove that each subplan are independant (the sum of optimal solution of each subplan is an optimal solution of the global problem)
 # Notes
 
 All the Python scripts (my_program.py) have user guide running <code>my_program.py -h</code> or <code>my_program.py --help</code>.
