@@ -24,18 +24,18 @@ Take care of including holding costs increasing with the quality of the products
 
 ### Without dispose
 
-- [ ] Prove that there exists an optimal solution that respects Wagner-Within property for new products
+- [x] Prove that there exists an optimal solution that respects Wagner-Within property for new products
 
-- [ ] Prove that there exists an optimal solution that respects Wagner-Within property for remanufacturial products
+- [x] Prove that there exists an optimal solution that respects Wagner-Within property for remanufactured products
 
-- [ ] Prove that there exists an optimal solution when new products and remanufacturial products are products at the same periods
+- [x] Prove that there exists an optimal solution when new products and remanufactured products are products at the same periods
 ### With dispose
 
-- [ ] Prove that there exists an optimal solution that respects Wagner-Within property for new products
+- [x] Prove that there exists an optimal solution that respects Wagner-Within property for new products
 
-- [ ] Prove that there exists an optimal solution that respects Wagner-Within property for remanufacturial products
+- [x] Prove that there exists an optimal solution that respects Wagner-Within property for remanufactured products
 
-- [ ] Prove that there exists an optimal solution when new products and remanufacturial products are products at the same periods
+- [x] Prove that there exists an optimal solution when new products and remanufactured products are products at the same periods
 
 - [ ] Define a subplan structure (4 indexes)
 
