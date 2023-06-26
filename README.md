@@ -37,11 +37,13 @@ Take care of including holding costs increasing with the quality of the products
 
 - [x] Prove that there exists an optimal solution when new products and remanufactured products are products at the same periods
 
-- [ ] Define a subplan structure (4 indexes)
+- [x] Define a subplan structure (4 indexes)
 
 - [ ] Prove that there exists an optimal solution when we dispose at the beginning of each subplan
 
 - [ ] Prove that each subplan are independant (the sum of optimal solution of each subplan is an optimal solution of the global problem)
+
+- [ ] Calculate the cost of an optimal solution of a subplan (if it's possible)
 # Notes
 
 All the Python scripts (my_program.py) have user guide running <code>my_program.py -h</code> or <code>my_program.py --help</code>.
