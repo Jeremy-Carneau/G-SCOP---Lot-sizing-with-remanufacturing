@@ -39,7 +39,7 @@ Take care of including holding costs increasing with the quality of the products
 
 - [x] Define a subplan structure (4 indexes)
 
-- [ ] Prove that there exists an optimal solution when we dispose at the beginning of each subplan
+- [x] Prove that there exists an optimal solution when we dispose at the beginning of each subplan
 
 - [ ] Prove that each subplan are independant (the sum of optimal solution of each subplan is an optimal solution of the global problem)
 
