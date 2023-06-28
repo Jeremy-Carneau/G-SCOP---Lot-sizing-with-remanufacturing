@@ -1,0 +1,103 @@
+IBM ILOG CPLEX Optimization Studio Community Edition.  The CPLEX Optimizers will solve problems up to 1000 variables and 1000 constraints.
+Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.co/2s0wqSa
+
+
+<<< setup
+
+
+<<< generate
+
+Version identifier: 22.1.1.0 | 2022-11-26 | 9160aff4d
+Tried aggregator 4 times.
+MIP Presolve eliminated 19 rows and 21 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 7 substitutions.
+Reduced MIP has 130 rows, 185 columns, and 364 nonzeros.
+Reduced MIP has 26 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0,00 sec. (0,55 ticks)
+Found incumbent of value 85644,000000 after 0,01 sec. (0,89 ticks)
+Probing fixed 1 vars, tightened 0 bounds.
+Probing time = 0,00 sec. (0,04 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 2 rows and 1 columns.
+Reduced MIP has 128 rows, 184 columns, and 360 nonzeros.
+Reduced MIP has 25 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0,00 sec. (0,21 ticks)
+Probing time = 0,00 sec. (0,03 ticks)
+Clique table members: 1.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0,00 sec. (0,65 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                        85644,0000     8707,0000            89,83%
+      0     0    49489,5391    24    85644,0000    49489,5391      212   42,21%
+*     0+    0                        65349,1136    49489,5391            24,27%
+      0     0    54161,9140    20    65349,1136     Cuts: 132      286   17,12%
+      0     0    55477,7733    17    65349,1136     Cuts: 105      329   15,11%
+*     0+    0                        60905,0000    55477,7733             8,91%
+      0     0    55518,1770    16    60905,0000      Cuts: 22      343    8,84%
+      0     0    55580,5050     9    60905,0000      Cuts: 20      354    8,74%
+*     0+    0                        58363,0000    55580,5050             4,77%
+      0     0    55588,5675    13    58363,0000      Cuts: 15      360    4,75%
+Detecting symmetries...
+      0     0    55593,6316    13    58363,0000      Cuts: 14      365    4,75%
+      0     0    55608,6450    11    58363,0000       Cuts: 8      371    4,72%
+*     0+    0                        56069,0000    55608,6450             0,82%
+*     0+    0                        55935,0000    55608,6450             0,58%
+Detecting symmetries...
+      0     2    55608,6450    11    55935,0000    55608,6450      371    0,58%
+Elapsed time = 0,10 sec. (18,33 ticks, tree = 0,02 MB, solutions = 6)
+*    28     3      integral     0    55828,0000    55778,8946      595    0,09%
+
+Clique cuts applied:  1
+Cover cuts applied:  2
+Implied bound cuts applied:  22
+Flow cuts applied:  18
+Mixed integer rounding cuts applied:  72
+Flow path cuts applied:  19
+Gomory fractional cuts applied:  7
+
+Root node processing (before b&c):
+  Real time             =    0,10 sec. (18,21 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0,01 sec. (2,35 ticks)
+  Sync time (average)   =    0,01 sec.
+  Wait time (average)   =    0,00 sec.
+                          ------------
+Total (root+branch&cut) =    0,11 sec. (20,56 ticks)
+
+<<< solve
+
+
+OBJECTIVE: 55828
+Post-traitement: 
+La valeur de l'objectif est de 55828
+Données :
+Dn =  [17 15 20 9 19 9 15 20 15 10 15 22 16 14 13 10 19 11 9 20 21 10 9 15 21 15
+     10 11 10 10]
+Ds =  [13 12 10 10 13 13 14 9 7 14 9 12 5 10 9 10 12 5 6 12 12 13 6 13 13 6 12 13
+     7 5]
+T = 30
+R =  [15 11 17 15 10 12 14 16 9 9 11 7 10 6 12 10 11 16 15 8 7 6 13 15 14 8 7 13
+     14 16]
+xn =  [17 15 20 28 0 9 35 0 25 0 37 0 30 1.5632e-13 23 0 39 0 0 41 0 19 0 16 45 0
+     0 31 0 0]
+xs =  [15 10 10 23 0 13 23 0 21 0 21 0 15 0 19 0 23 0 0 24 0 19 0 14 30 0 0 25 0
+     0]
+xr =  [-4.4409e-16 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 3 0 0 14 16]
+sn =  [0 0 0 0 19 0 0 20 0 10 0 22 0 14 0 10 0 20 9 0 21 0 9 0 1 25 10 0 20 10 0]
+ss =  [0 2 0 0 13 0 0 9 0 14 0 12 0 10 0 10 0 11 6 0 12 0 6 0 1 18 12 0 12 5 0]
+sr =  [0 0 1 8 0 10 9 0 16 2 11 1 8 3 9 2 12 0 9 24 8 15 2 15 16 0 5 12 0 0 0]
+
+<<< post process
+
+
+<<< done
+

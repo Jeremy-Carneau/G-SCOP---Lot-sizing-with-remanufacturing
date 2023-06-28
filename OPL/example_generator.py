@@ -20,11 +20,13 @@ Ds_range = 5 # Range of the remanufactured demand
 Dn_mean = 15 # Mean of the manufactured demand
 Dn_range = 7 # Range of the manufactured demand
 
-R_mean = 11 # Mean of the number of returns
+R_mean = 11 # Mean of the number of returns (11)
 R_range = 5 # Range of the number of returns
 
-C_mean = 50 # Mean of the capacity values
-C_range = 5 # Range of the capacity values
+Cn = 45 # Value of the production capacity of new products
+Cs = 30 # Value of the production capacity of remanufactured products
+
+C = 80 # Production capacity in case of common capacity
 
 f_mean = 1000 # Mean of setup cost
 f_range = 30 # Range of setup cost
@@ -54,7 +56,7 @@ def parse_args():
     global args
     parser = argparse.ArgumentParser(description='Generate a .dat file following type of the chosen lot sizing problem. All the values are integers.')
     parser.add_argument("-c", "--capacitated", action="store_true", help="The lot sizing problem include capacity")
-    parser.add_argument("-C", action="store_true", help="The capacity is constant (need the capacitated problem)")
+    parser.add_argument("-C", action="store_true", help="The capacity of new and remanufactured products is common")
     parser.add_argument("-r", "--returns", action="store_true", help="The lot sizing problem include returns")
     parser.add_argument("-d", "--dispose", action="store_true", help="The lot sizing problem include dispose")
     parser.add_argument("-f", "--file", default="example.dat", help="Name of the .dat created file (default : example.dat)")
@@ -133,10 +135,11 @@ def generate_example():
 
     if args.capacitated:
         if args.C:
-            C = [C_mean] * args.T
+            file.write(f"C = {C};\n")
         else:
-            C = create_random_list(C_mean, C_range)
-        file.write(f"C = {C};\n")
+            file.write(f"Cs = {Cs};\n")
+            file.write(f"Cn = {Cn};\n")
+
 
 
     file.close()
