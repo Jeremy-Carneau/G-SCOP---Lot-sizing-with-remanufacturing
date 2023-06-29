@@ -28,25 +28,25 @@ Cs = 30 # Value of the production capacity of remanufactured products
 
 C = 80 # Production capacity in case of common capacity
 
-f_mean = 1000 # Mean of setup cost
+f_mean = 2000 # Mean of setup cost
 f_range = 30 # Range of setup cost
 
-pn_mean = 55 # Mean of variable manufacturing cost
+pn_mean = 70 # Mean of variable manufacturing cost
 pn_range = 5 # Range of variable manufacturing cost
 
-ps_mean = 33 # Mean of variable remanufacturing cost
+ps_mean = 47 # Mean of variable remanufacturing cost
 ps_range = 3 # Range of variable remanufacturing cost
 
-pr_mean = 21 # Mean of dispose cost
+pr_mean = 35 # Mean of dispose cost
 pr_range = 1 # Range of dispose cost
 
-hn_mean = 15 # Mean of holding cost of manufacturing products
+hn_mean = 28 # Mean of holding cost of manufacturing products
 hn_range = 2 # Range of holding cost of manufacturing products
 
-hs_mean = 11 # Mean of holding cost of remanufacturing products
+hs_mean = 20 # Mean of holding cost of remanufacturing products
 hs_range = 1 # Range of holding cost of remanufacturing products
 
-hr_mean = 3 # Mean of holding cost of returns
+hr_mean = 11 # Mean of holding cost of returns
 hr_range = 1 # Range of holding cost of returns
 
 ##### Code
@@ -62,13 +62,15 @@ def parse_args():
     parser.add_argument("-f", "--file", default="example.dat", help="Name of the .dat created file (default : example.dat)")
     parser.add_argument("-T", type=int, default = 30, help="Length of the horizon (default : 30)")
     args = parser.parse_args()
-    
+
+
 def create_random_list(m, r):
     """ Returns a list of random integers in the [m - r, m + r] interval."""
     res = []
     for _ in range(args.T):
         res.append(m + rd.randint(-r, r))
     return res
+
 
 def adjust_returns(R, Ds):
     """Takes in a list of Returns and a list of demands and adjusts the Returns list so that there exists a solution to the lot sizing problem
@@ -90,58 +92,102 @@ def adjust_returns(R, Ds):
     return modified
 
 
+def verifiy_constraints():
+    """ Verify that constraints on costs are verified """
+
+    # Constraint non-speculative costs of new products (2.1.n)
+    if not(hn_mean - hn_range > 2 * pn_range):
+        print("New products costs are not strictly non-speculative.")
+    
+    # Constraint non-speculative costs of remanufactured products (2.1.s)
+    if not(hs_mean - hs_range > 2 * ps_range):
+        print("Remanufactured products costs are not strictly non-speculative.")
+    
+    # Constraint non-speculative costs of returns (2.1.r)
+    if args.dispose and not(hr_mean - hr_range > 2 * pr_range):
+        print("Returns costs are not strictly non-speculative.")
+
+    # Constraint return-advantage costs (2.2)
+    if not(hs_mean - hs_range > hr_mean + hr_range + 2 * ps_range):
+        print("Return-advantage costs are not verified.")
+
 
 def generate_example():
     """ Create the .dat file with the constraints set by the problem."""
+    global Dn, Ds, R, f, pn, ps, pr, hn, hs, hr
+
+    # Demand
+    Dn = create_random_list(Dn_mean, Dn_range)
+    Ds = create_random_list(Ds_mean, Ds_range)
+
+    # Returns
+    if args.returns:
+        R = create_random_list(R_mean, R_range)
+
+    # Setup costs
+    f = create_random_list(f_mean, f_range)
+
+    # Production costs
+    pn = create_random_list(pn_mean, pn_range)
+    ps = create_random_list(ps_mean, ps_range)
+
+    # Dispose
+    if args.dispose:
+        pr = create_random_list(pr_mean, pr_range)
+    
+    # Storage costs
+    hn = create_random_list(hn_mean, hn_range)
+    hs = create_random_list(hs_mean, hs_range)
+    hr = create_random_list(hr_mean, hr_range)
+
+
+def verify_feasibility():
+    """ Verify feasibility of the generated instance and adjusts data if not """
+
+    if adjust_returns(R, Ds):
+        print("The list of returns has been adjusted for a solution to exist.")
+
+
+def write_example():
+    """ Write the example in the file."""
 
     file = open(args.file, "w")
 
+    # Length of the horizon
     file.write(f"T = {args.T};\n")
 
-    Dn = create_random_list(Dn_mean, Dn_range)
+    # Demand
     file.write(f"Dn = {Dn};\n")
-
-    Ds = create_random_list(Ds_mean, Ds_range)
     file.write(f"Ds = {Ds};\n")
 
+    # Returns
     if args.returns:
-        R = create_random_list(R_mean, R_range)
-        modified = adjust_returns(R, Ds)
-        if modified:
-            print("The list of returns has been adjusted for a solution to exist")
         file.write(f"R = {R};\n")
-
-    f = create_random_list(f_mean, f_range)
+    
+    # Setup costs
     file.write(f"f = {f};\n")
 
-    pn = create_random_list(pn_mean, pn_range)
+    # Production costs
     file.write(f"pn = {pn};\n")
-
-    ps = create_random_list(ps_mean, ps_range)
     file.write(f"ps = {ps};\n")
 
+    # Dispose
     if args.dispose:
-        pr = create_random_list(pr_mean, pr_range)
         file.write(f"pr = {pr};\n")
-    
-    hn = create_random_list(hn_mean, hn_range)
+
+    # Storage costs
     file.write(f"hn = {hn};\n")
-
-    hs = create_random_list(hs_mean, hs_range)
     file.write(f"hs = {hs};\n")
-
-    hr = create_random_list(hr_mean, hr_range)
     file.write(f"hr = {hr};\n")
 
+    # Production capacity
     if args.capacitated:
         if args.C:
             file.write(f"C = {C};\n")
         else:
             file.write(f"Cs = {Cs};\n")
             file.write(f"Cn = {Cn};\n")
-
-
-
+    
     file.close()
 
 
@@ -149,7 +195,13 @@ def main():
     """ Main fonction. Only executed when the script is runned (not imported)."""
     parse_args()
     
+    verifiy_constraints()
+
     generate_example()
+
+    verify_feasibility()
+
+    write_example()
 
     return 1
 
