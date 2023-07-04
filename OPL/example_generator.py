@@ -14,11 +14,11 @@ import random as rd
 
 ##### Global variables
 
-Ds_mean = 10 # Mean of the remanufactured demand
-Ds_range = 5 # Range of the remanufactured demand
+Ds_mean = 10 # Mean of the remanufactured demand (10)
+Ds_range = 5 # Range of the remanufactured demand (5)
 
-Dn_mean = 15 # Mean of the manufactured demand
-Dn_range = 7 # Range of the manufactured demand
+Dn_mean = 15 # Mean of the manufactured demand (15)
+Dn_range = 7 # Range of the manufactured demand (7)
 
 R_mean = 11 # Mean of the number of returns (11)
 R_range = 5 # Range of the number of returns
@@ -28,7 +28,7 @@ Cs = 30 # Value of the production capacity of remanufactured products
 
 C = 80 # Production capacity in case of common capacity
 
-f_mean = 2000 # Mean of setup cost
+f_mean = 5000 # Mean of setup cost
 f_range = 30 # Range of setup cost
 
 pn_mean = 70 # Mean of variable manufacturing cost
@@ -72,8 +72,8 @@ def create_random_list(m, r):
     return res
 
 
-def adjust_returns(R, Ds):
-    """Takes in a list of Returns and a list of demands and adjusts the Returns list so that there exists a solution to the lot sizing problem
+def adjust_returns():
+    """Adjusts the Returns list so that there exists a solution to the lot sizing problem
     Returns a boolean indicating whether a change has been made or not"""
     pref_R = 0
     pref_Ds = 0
@@ -89,6 +89,49 @@ def adjust_returns(R, Ds):
             R[i] += delta
             pref_R += delta
 
+    return modified
+
+
+def adjust_capacitated_uncommon():
+    """ Adjusts lists of returns and demands so that there exists a solution to the lot sizing
+    problem with uncommon capacity.
+    Returns a boolean indication whether a change has been made or not."""
+    M_t = 0
+    M_t1 = 0
+    R_1_t = 0
+    Ds_1_t = 0
+    Dn_1_t = 0
+    modified = False
+    for t in range(args.T):
+        Ds_1_t += Ds[t]
+        Dn_1_t += Dn[t]
+        R_1_t += R[t]
+        M_t1 = M_t + min(R_1_t - M_t, Cs)
+        while M_t1 < Ds_1_t:
+            modified = True
+
+            if R_1_t - M_t < Cs:
+                # If the problem is maybe the lack of returns
+                R_1_t -= R[t]
+                R[t] = min(Cs, Ds[t])
+                R_1_t += R[t]
+            else:
+                # If the problem is the demand that is too high
+                Ds_1_t -= Ds[t]
+                Ds[t] = min(max(1, R[t] + rd.randint(0, R_range)), Cs)
+                Ds_1_t += Ds[t]
+
+            M_t1 = M_t + min(R_1_t - M_t, Cs)
+        M_t = M_t1
+
+        while (t + 1) * Cn  < Dn_1_t:
+            modified = True
+
+            temp = Dn_1_t
+            Dn_1_t -= Dn[t]
+            Dn[t] = max(1, Cn - rd.randint(-Dn_range, Dn_range))
+            Dn_1_t += Dn[t] 
+    
     return modified
 
 
@@ -110,6 +153,10 @@ def verifiy_constraints():
     # Constraint return-advantage costs (2.2)
     if not(hs_mean - hs_range > hr_mean + hr_range + 2 * ps_range):
         print("Return-advantage costs are not verified.")
+    
+    # Constraint of possible null demand:
+    if Ds_mean - Ds_range <= 0 or Dn_mean - Dn_range <= 0:
+        print("Demand values can be null.")
 
 
 def generate_example():
@@ -144,8 +191,13 @@ def generate_example():
 def verify_feasibility():
     """ Verify feasibility of the generated instance and adjusts data if not """
 
-    if adjust_returns(R, Ds):
+    if args.capacitated and adjust_capacitated_uncommon():
+        print("The list of returns and demand has been adjusted for a solution to exist.")
+    
+    elif adjust_returns():
         print("The list of returns has been adjusted for a solution to exist.")
+
+    
 
 
 def write_example():
