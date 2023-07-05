@@ -97,8 +97,8 @@ def adjust_capacitated_uncommon():
     problem with uncommon capacity.
     Returns a boolean indication whether a change has been made or not."""
 
-    M_t = 0 # Max of remanufactured production until t
-    M_t1 = 0 # Max of remanufactured production until t+1
+    M_t = 0 # Max of remanufactured production until t-1
+    M_t1 = 0 # Max of remanufactured production until t
     R_1_t = 0 # Sum of returns until t
     Ds_1_t = 0 # Sum of remanufactured products demand until t
     Dn_1_t = 0 # Sum of new products demand until t
@@ -109,7 +109,7 @@ def adjust_capacitated_uncommon():
         Ds_1_t += Ds[t]
         Dn_1_t += Dn[t]
         R_1_t += R[t]
-        
+
         M_t1 = M_t + min(R_1_t - M_t, Cs)
 
         # Remanufactured products
