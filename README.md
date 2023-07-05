@@ -1,13 +1,3 @@
-# Objectives
-
-We need to begin to analyze the uncapacitated lot sizing problem with and without dispose cases first (dispose = we can discard/sell stock of return ; treat both cases when this discard is a profit or a loss).
-
-
-When finished, we can start including capacity (start without dispose first).
-
-
-Take care of including holding costs increasing with the quality of the products ($h_t^r <= h_t^s <= h_t^n$).
-
 # To do list
 
 ## Programming section
@@ -22,14 +12,14 @@ Take care of including holding costs increasing with the quality of the products
 
 - [x] Find solution properties about the problem with and without dispose
 
-### Without dispose
+### Uncapacitated without dispose
 
 - [x] Prove that there exists an optimal solution that respects Wagner-Within property for new products
 
 - [x] Prove that there exists an optimal solution that respects Wagner-Within property for remanufactured products
 
 - [x] Prove that there exists an optimal solution when new products and remanufactured products are products at the same periods
-### With dispose
+### Uncapacitated with dispose
 
 - [x] Prove that there exists an optimal solution that respects Wagner-Within property for new products
 
@@ -41,12 +31,30 @@ Take care of including holding costs increasing with the quality of the products
 
 - [x] Prove that there exists an optimal solution when we dispose at the beginning of each subplan
 
-- [ ] Prove that each subplan are independant (the sum of optimal solution of each subplan is an optimal solution of the global problem)
+- [x] Prove that each subplan are independant (the sum of optimal solution of each subplan is an optimal solution of the global problem)
 
-- [ ] Calculate the cost of an optimal solution of a subplan (if it's possible)
-# Notes
+- [x] Calculate the cost of an optimal solution of a subplan (if it's possible)
 
-All the Python scripts (my_program.py) have user guide running <code>my_program.py -h</code> or <code>my_program.py --help</code>.
+- [x] Establish Bellman equation for the problem
+
+### Capacitated without dispose (Common capacity)
+
+- [ ] Find and prove solution properties 
+
+- [ ] Define subplan structure
+
+- [ ] Calculate the optimal cost of a subplan
+
+- [ ] Establish Bellman equation for the problem
+### Capacitated with dispose (Common capacity)
+
+- [ ] Find and prove solution properties
+
+- [ ] Define subplan structure
+
+- [ ] Calculate the optimal cost of a subplan
+
+- [ ] Establish Bellman equation for the problem
 # Notations
 
 ## Parameters
@@ -77,3 +85,9 @@ Decision variables in each period $t$:
 - $s^s_t$: Inventory of remanufactured products (at the end of the period);
 - $s^n_t$: Inventory of manufactured products (at the end of the period);
 - $s^r_t$: Inventory of returns (at the end of the period);
+
+# Notes
+
+All the Python scripts (my_program.py) have user guide running <code>my_program.py -h</code> or <code>my_program.py --help</code>.
+
+Take care of including holding costs increasing with the quality of the products ($h_t^r <= h_t^s <= h_t^n$).

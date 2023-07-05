@@ -96,17 +96,23 @@ def adjust_capacitated_uncommon():
     """ Adjusts lists of returns and demands so that there exists a solution to the lot sizing
     problem with uncommon capacity.
     Returns a boolean indication whether a change has been made or not."""
-    M_t = 0
-    M_t1 = 0
-    R_1_t = 0
-    Ds_1_t = 0
-    Dn_1_t = 0
+
+    M_t = 0 # Max of remanufactured production until t
+    M_t1 = 0 # Max of remanufactured production until t+1
+    R_1_t = 0 # Sum of returns until t
+    Ds_1_t = 0 # Sum of remanufactured products demand until t
+    Dn_1_t = 0 # Sum of new products demand until t
+
     modified = False
+
     for t in range(args.T):
         Ds_1_t += Ds[t]
         Dn_1_t += Dn[t]
         R_1_t += R[t]
+        
         M_t1 = M_t + min(R_1_t - M_t, Cs)
+
+        # Remanufactured products
         while M_t1 < Ds_1_t:
             modified = True
 
@@ -116,7 +122,7 @@ def adjust_capacitated_uncommon():
                 R[t] = min(Cs, Ds[t])
                 R_1_t += R[t]
             else:
-                # If the problem is the demand that is too high
+                # If the problem is that the demand is too high
                 Ds_1_t -= Ds[t]
                 Ds[t] = min(max(1, R[t] + rd.randint(0, R_range)), Cs)
                 Ds_1_t += Ds[t]
@@ -124,10 +130,10 @@ def adjust_capacitated_uncommon():
             M_t1 = M_t + min(R_1_t - M_t, Cs)
         M_t = M_t1
 
+        # New products
         while (t + 1) * Cn  < Dn_1_t:
             modified = True
 
-            temp = Dn_1_t
             Dn_1_t -= Dn[t]
             Dn[t] = max(1, Cn - rd.randint(-Dn_range, Dn_range))
             Dn_1_t += Dn[t] 
