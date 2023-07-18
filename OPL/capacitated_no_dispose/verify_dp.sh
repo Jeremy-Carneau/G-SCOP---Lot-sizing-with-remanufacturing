@@ -1,7 +1,0 @@
-#!/bin/bash
-
-g++ dp_implementation.cpp -o dp_implementation
-python3.11 ../example_generator.py -rc -f temp.dat
-oplrun program.mod temp.dat > temp.txt
-grep "^La valeur de l'objectif est de" temp.txt
-./dp_implementation < temp.dat
