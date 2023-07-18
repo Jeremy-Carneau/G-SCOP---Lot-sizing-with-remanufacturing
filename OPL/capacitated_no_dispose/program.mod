@@ -23,10 +23,8 @@ float hs[periods] = ... ; // Holding cost of remanufactured products
 float hr[periods] = ... ; // Holding cost of returns
 
 float Cs = ...; // Production capacity of remanufactured products 
-float Cn = ...; // Production capacity of remanufactured products 
+float Cn = ...; // Production capacity of new products 
 
-float M = sum (t in periods) (Dn[t] + Ds[t]); // Max of production
-// TODO : reduce M value to be more efficient
 
 /*
     Variables declaration
@@ -67,10 +65,8 @@ subject to {
     // Returns management
     forall (t in periods) R[t] + sr[t - 1] == sr[t] + xs[t];
 
-    // In order to include production cost
+    // Capacity constraints
     forall (t in periods) xs[t] <= Cs * y[t];
-
-    // In order to include production cost
     forall (t in periods) xn[t] <= Cn * y[t];
 }
 
