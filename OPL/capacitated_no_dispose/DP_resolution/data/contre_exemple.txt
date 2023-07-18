@@ -1,0 +1,113 @@
+IBM ILOG CPLEX Optimization Studio Community Edition.  The CPLEX Optimizers will solve problems up to 1000 variables and 1000 constraints.
+Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.co/2s0wqSa
+
+
+<<< setup
+
+
+<<< generate
+
+Version identifier: 22.1.1.0 | 2022-11-26 | 9160aff4d
+Tried aggregator 5 times.
+MIP Presolve eliminated 18 rows and 17 columns.
+MIP Presolve modified 6 coefficients.
+Aggregator did 10 substitutions.
+Reduced MIP has 125 rows, 156 columns, and 327 nonzeros.
+Reduced MIP has 24 binaries, 132 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0,00 sec. (0,69 ticks)
+Found incumbent of value 250274,000000 after 0,01 sec. (1,92 ticks)
+Probing fixed 1 vars, tightened 0 bounds.
+Probing time = 0,00 sec. (0,09 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 2 rows and 1 columns.
+Reduced MIP has 123 rows, 155 columns, and 323 nonzeros.
+Reduced MIP has 23 binaries, 132 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0,00 sec. (0,21 ticks)
+Probing time = 0,00 sec. (0,08 ticks)
+Clique table members: 2.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0,00 sec. (0,53 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       250274,0000    38817,0000            84,49%
+*     0+    0                       224146,0000    38817,0000            82,68%
+*     0+    0                       222706,0000    38817,0000            82,57%
+*     0+    0                       222299,0000    38817,0000            82,54%
+      0     0   128612,1556    66   222299,0000   128612,1556      165   42,14%
+      0     0   135311,5068   127   222299,0000     Cuts: 101      196   39,13%
+*     0+    0                       208796,0000   135311,5068            35,19%
+      0     0   138646,8624    99   208796,0000      Cuts: 42      227   33,60%
+*     0+    0                       186516,0000   138646,8624            25,66%
+      0     0   139189,2696   133   186516,0000       Cuts: 8      241   25,37%
+      0     0   139721,0076    78   186516,0000      Cuts: 11      256   25,09%
+*     0+    0                       166904,0000   139721,0076            16,29%
+*     0+    0                       166824,0000   139721,0076            16,25%
+      0     0   139774,2480   109   166824,0000  Flowpaths: 3      259   16,21%
+Detecting symmetries...
+      0     0   139861,5600   106   166824,0000  Flowpaths: 4      263   16,16%
+      0     0   139910,2488   112   166824,0000       Cuts: 6      267   16,13%
+      0     0   139922,5843    81   166824,0000  Flowpaths: 2      269   16,13%
+      0     0   139932,1453   112   166824,0000       Cuts: 4      272   16,12%
+      0     0   139932,7652   112   166824,0000    MIRcuts: 2      274   16,12%
+*     0+    0                       144205,0000   139932,7652             2,96%
+*     0+    0                       143734,0000   139932,7652             2,64%
+Detecting symmetries...
+      0     2   139932,7652   112   143734,0000   140013,3769      274    2,59%
+Elapsed time = 0,13 sec. (25,41 ticks, tree = 0,02 MB, solutions = 10)
+*    16+    7                       143720,0000   140013,3769             2,58%
+*    43+    5                       143649,0000   140013,3769             2,53%
+*    75    20      integral     0   143096,0000   140013,3769      379    2,15%
+*   124    47      integral     0   142536,0000   140013,3769      615    1,77%
+*   211    55      integral     0   141441,0000   140013,3769     1209    1,01%
+*   395    42      integral     0   141420,0000   140019,5937     1606    0,99%
+
+Implied bound cuts applied:  4
+Flow cuts applied:  2
+Mixed integer rounding cuts applied:  6
+Flow path cuts applied:  28
+Zero-half cuts applied:  3
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0,13 sec. (25,34 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0,04 sec. (10,99 ticks)
+  Sync time (average)   =    0,01 sec.
+  Wait time (average)   =    0,00 sec.
+                          ------------
+Total (root+branch&cut) =    0,17 sec. (36,33 ticks)
+
+<<< solve
+
+
+OBJECTIVE: 141420
+Post-traitement: 
+La valeur de l'objectif est de 141420
+Données :
+Dn =  [9 20 16 13 8 17 20 17 20 18 22 19 14 14 11 11 8 20 8 13 11 8 9 22 15 20 9
+     16 15 16]
+Ds =  [7 9 13 10 15 7 5 14 8 9 9 7 8 8 9 5 6 5 11 10 13 7 14 13 8 13 14 11 9 6]
+T = 30
+R =  [7 15 13 8 15 11 10 15 17 8 16 11 10 11 15 7 14 11 8 16 15 7 13 11 10 11 16
+     17 12 13]
+xn =  [9 20 16 13 8 43 0 45 0 45 0 0 41 0 0 45 0 0 0 41 0 0 0 37 0 45 0 0 31 0]
+xs =  [7 9 13 10 15 12 0 23 0 30 0 0 30 0 0 30 0 0 0 30 0 0 0 29 0 30 0 0 15 0]
+sn =  [0 0 0 0 0 0 26 6 34 14 41 19 0 27 13 2 36 28 8 0 28 17 9 0 15 0 25 16 0 16
+     0]
+ss =  [0 0 0 0 0 0 5 0 9 1 22 13 6 28 20 11 36 30 25 14 34 21 14 0 16 8 25 11 0 6
+     0]
+sr =  [0 0 6 6 4 4 3 13 5 22 0 16 27 7 18 33 10 24 35 43 29 44 51 64 46 56 37 53
+     70 67 80]
+
+<<< post process
+
+
+<<< done
+
