@@ -133,17 +133,17 @@ int main(){
                             if(Ns>0 || Nn>0) continue;
                             for(int i=t; i<T; i++)
                                 for(int j=t; j<T; j++)
-                                    dp[t][t][t][0][0] = MIN(dp[t][t][t][0][0], dp[t][i+1][j+1][CEIL(Ds_rng[t][i], Cs)][CEIL(Dn_rng[t][j], Cn)]);
+                                    if(CEIL(Ds_rng[t][i], Cs) <= T && CEIL(Dn_rng[t][j], Cn) <= T) dp[t][t][t][0][0] = MIN(dp[t][t][t][0][0], dp[t][i+1][j+1][CEIL(Ds_rng[t][i], Cs)][CEIL(Dn_rng[t][j], Cn)]);
                         }
                         else if(t==ks){
                             if(Ns>0) continue;
                             for(int i=t; i<T; i++)
-                                dp[t][t][kn][0][Nn] = MIN(dp[t][t][kn][0][Nn], dp[t][i+1][kn][CEIL(Ds_rng[t][i], Cs)][Nn]);
+                                if(CEIL(Ds_rng[t][i], Cs) <= T) dp[t][t][kn][0][Nn] = MIN(dp[t][t][kn][0][Nn], dp[t][i+1][kn][CEIL(Ds_rng[t][i], Cs)][Nn]);
                         }
                         else if(t==kn){
                             if(Nn>0) continue;
                             for(int j=t; j<T; j++)
-                                dp[t][ks][t][Ns][0] = MIN(dp[t][ks][t][Ns][0], dp[t][ks][j+1][Ns][CEIL(Dn_rng[t][j], Cn)]);
+                                if(CEIL(Dn_rng[t][j], Cn) <= T)dp[t][ks][t][Ns][0] = MIN(dp[t][ks][t][Ns][0], dp[t][ks][j+1][Ns][CEIL(Dn_rng[t][j], Cn)]);
                         }
                         else{
                             //cost in case of production
