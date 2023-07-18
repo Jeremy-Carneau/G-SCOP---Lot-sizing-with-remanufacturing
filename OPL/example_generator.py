@@ -20,7 +20,7 @@ Ds_range = 5 # Range of the remanufactured demand (5)
 Dn_mean = 15 # Mean of the manufactured demand (15)
 Dn_range = 7 # Range of the manufactured demand (7)
 
-R_mean = 11 # Mean of the number of returns (11)
+R_mean = 12 # Mean of the number of returns (11)
 R_range = 5 # Range of the number of returns
 
 Cn = 45 # Value of the production capacity of new products

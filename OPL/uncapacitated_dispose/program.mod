@@ -59,8 +59,6 @@ subject to {
     sn[0] == 0;
     ss[0] == 0;
     sr[0] == 0;
-    ss[T] == 0;
-    sn[T] == 0;
     sr[T] == 0;
     
     // We respond to demand

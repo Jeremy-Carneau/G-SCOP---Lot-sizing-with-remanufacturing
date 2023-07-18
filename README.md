@@ -39,20 +39,12 @@
 
 ### Capacitated without dispose (Common capacity)
 
-- [ ] Find and prove solution properties 
+- [x] Find and prove solution properties 
 
-- [ ] Define subplan structure
-
-- [ ] Calculate the optimal cost of a subplan
-
-- [ ] Establish Bellman equation for the problem
+- [x] Establish Bellman equation for the problem
 ### Capacitated with dispose (Common capacity)
 
 - [ ] Find and prove solution properties
-
-- [ ] Define subplan structure
-
-- [ ] Calculate the optimal cost of a subplan
 
 - [ ] Establish Bellman equation for the problem
 # Notations
