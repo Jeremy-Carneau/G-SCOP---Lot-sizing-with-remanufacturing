@@ -8,35 +8,35 @@
 int T = ... ; // Length of the horizon
 range periods = 1..T ;
 
-float Dn[periods] = ... ; // Demand of manufactured products
-float Ds[periods] = ... ; // Demand of remanufactured products
+int Dn[periods] = ... ; // Demand of manufactured products
+int Ds[periods] = ... ; // Demand of remanufactured products
 
-float R[periods] = ... ; // Returns (at the beginning of the period)
+int R[periods] = ... ; // Returns (at the beginning of the period)
 
-float f[periods] = ... ; // Fixed joint setup cost
+int f[periods] = ... ; // Fixed joint setup cost
 
-float pn[periods] = ... ; // Variable manufacturing cost
-float ps[periods] = ... ; // Variable remanufacturing cost
-float pr[periods] = ... ; // Variable cost to dispose returns
+int pn[periods] = ... ; // Variable manufacturing cost
+int ps[periods] = ... ; // Variable remanufacturing cost
+int pr[periods] = ... ; // Variable cost to dispose returns
 
-float hn[periods] = ... ; // Holding cost of manufactured products
-float hs[periods] = ... ; // Holding cost of remanufactured products
-float hr[periods] = ... ; // Holding cost of returns
+int hn[periods] = ... ; // Holding cost of manufactured products
+int hs[periods] = ... ; // Holding cost of remanufactured products
+int hr[periods] = ... ; // Holding cost of returns
 
-float Cs = ...; // Production capacity of remanufactured products 
-float Cn = ...; // Production capacity of new products 
+int Cs = ...; // Production capacity of remanufactured products 
+int Cn = ...; // Production capacity of new products 
 
 /*
     Variables declaration
 */
 
-dvar float+ xn[periods]; // Number of manufactured products
-dvar float+ xs[periods]; // Number of remanufactured products
-dvar float+ xr[periods]; // Number of disposed return products
+dvar int+ xn[periods]; // Number of manufactured products
+dvar int+ xs[periods]; // Number of remanufactured products
+dvar int+ xr[periods]; // Number of disposed return products
 
-dvar float+ sn[0..T]; // Inventory of manufactured products
-dvar float+ ss[0..T]; // Inventory of remanufactured products
-dvar float+ sr[0..T]; // Inventory of returns
+dvar int+ sn[0..T]; // Inventory of manufactured products
+dvar int+ ss[0..T]; // Inventory of remanufactured products
+dvar int+ sr[0..T]; // Inventory of returns
 
 dvar boolean y[periods]; // y[t] = 1 if production is launched at period t, else 0
 
