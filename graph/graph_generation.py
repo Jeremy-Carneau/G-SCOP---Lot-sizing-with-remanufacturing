@@ -20,10 +20,10 @@ E = 0.001 # Under this value, the flow is considered equals to 0
 
 def read_line(line):
     res = []
-    res.append(float(line[2][1:]))
+    res.append(int(line[2][1:]))
     for x in line[3:-1]:
-        res.append(float(x))
-    res.append(float(line[-1][:-1]))
+        res.append(int(x))
+    res.append(int(line[-1][:-1]))
     return res
 
 

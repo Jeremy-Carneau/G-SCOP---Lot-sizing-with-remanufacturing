@@ -1,4 +1,4 @@
-build
-temp.txt
-temp.dat
-.vscode
+**/build
+**/temp.txt
+**/temp.dat
+**/.vscode
