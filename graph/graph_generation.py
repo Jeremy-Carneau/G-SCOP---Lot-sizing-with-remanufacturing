@@ -220,6 +220,8 @@ def generate_graph():
 
     plt.title("Lot sizing flow graph")
     plt.axis('equal')
+    mng = plt.get_current_fig_manager() 
+    mng.resize(*mng.window.maxsize())
     plt.show()
 
 def main():
@@ -231,6 +233,8 @@ def main():
                   \nPlot the flow graph of the OPL results put in the file in argument.""")
             exit(0)
         filename = sys.argv[1]
+
+    plt.switch_backend('TkAgg')
 
     collect_data(filename)
 
