@@ -44,7 +44,7 @@
 - [x] Establish Bellman equation for the problem
 ### Capacitated with dispose (Common capacity)
 
-- [ ] Find and prove solution properties
+- [x] Find and prove solution properties
 
 - [ ] Establish Bellman equation for the problem
 # Notations
