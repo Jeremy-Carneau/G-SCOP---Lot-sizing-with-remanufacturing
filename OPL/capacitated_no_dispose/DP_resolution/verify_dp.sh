@@ -20,7 +20,7 @@ if [ "$target_value" -eq "$dp_value" ]; then
   echo "Results are equal : " $dp_value
 else
   echo "Results are differents."
-  echo "DP value : " $dp_value
+  echo "DP value  : " $dp_value
   echo "OPL value : " $target_value
 fi
 

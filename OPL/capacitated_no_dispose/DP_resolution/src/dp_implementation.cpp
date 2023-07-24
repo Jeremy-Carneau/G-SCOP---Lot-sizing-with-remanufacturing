@@ -4,8 +4,8 @@
 
 #define ll long long
 #define INF -1
-#define MIN(u,v) (u==-1?v:(v==-1?u:min(u,v))) 
-#define CEIL(x,y) (x/y + (x%y?1:0))  //returns ceil(x/y)
+#define MIN(u,v) (u==INF?v:(v==INF?u:min(u,v))) 
+#define CEIL(x,y) (x/y + (x%y?1LL:0LL))  //returns ceil(x/y)
 
 using namespace std;
 

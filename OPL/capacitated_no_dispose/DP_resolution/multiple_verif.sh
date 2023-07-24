@@ -13,7 +13,8 @@ while [ $counter -lt $max_iterations ]; do
 
     # If the results are differents
     elif echo "$output" | grep -q "Results are differents."; then
-        echo "Error.$output"
+        echo "Error :" 
+        echo "$output"
         break
     fi
     

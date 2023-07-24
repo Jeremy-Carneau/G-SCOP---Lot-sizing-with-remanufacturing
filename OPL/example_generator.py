@@ -14,13 +14,13 @@ import random as rd
 
 ##### Global variables
 
-Ds_mean = 10 # Mean of the remanufactured demand (10)
+Ds_mean = 20 # Mean of the remanufactured demand (10)
 Ds_range = 5 # Range of the remanufactured demand (5)
 
 Dn_mean = 15 # Mean of the manufactured demand (15)
 Dn_range = 7 # Range of the manufactured demand (7)
 
-R_mean = 12 # Mean of the number of returns (11)
+R_mean = 30 # Mean of the number of returns (11)
 R_range = 5 # Range of the number of returns
 
 Cn = 45 # Value of the production capacity of new products
@@ -46,7 +46,7 @@ hn_range = 2 # Range of holding cost of manufacturing products
 hs_mean = 20 # Mean of holding cost of remanufacturing products
 hs_range = 1 # Range of holding cost of remanufacturing products
 
-hr_mean = 11 # Mean of holding cost of returns
+hr_mean = 6 # Mean of holding cost of returns
 hr_range = 1 # Range of holding cost of returns
 
 ##### Code
@@ -162,7 +162,7 @@ def verifiy_constraints():
     
     # Constraint of possible null demand:
     if Ds_mean - Ds_range <= 0 or Dn_mean - Dn_range <= 0:
-        print("Demand values can be null.")
+        print("Demand values can be negative or null.")
 
 
 def generate_example():

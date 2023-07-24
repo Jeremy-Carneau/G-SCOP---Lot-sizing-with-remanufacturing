@@ -1,5 +1,10 @@
 
 // Uncapacitated with dispose lot sizing problem
+execute{
+    cplex.EpAGap = 0.0;
+    cplex.EpGap = 0.0;
+    cplex.TiLim = 60;
+}
 
 /*
     Data
